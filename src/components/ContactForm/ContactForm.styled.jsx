@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { Form, Field } from 'formik';
 
-export const Form = styled.form`
+export const MainForm = styled(Form)`
   width: 200px;
   padding: 20px 100px 20px 20px;
   border: ${props => `1px solid ${props.theme.colors.black}`};
@@ -10,10 +11,13 @@ export const Form = styled.form`
 export const Label = styled.label`
   font-size: 18px;
 `;
+export const ErrorText = styled.p`
+  color: red;
+`;
 
-export const InputForm = styled.input`
+export const InputForm = styled(Field)`
   margin-top: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const ButtonAdd = styled.button`
@@ -23,7 +27,6 @@ export const ButtonAdd = styled.button`
   background-color: ${props => props.theme.colors.button};
   color: ${props => props.theme.colors.white};
   font-weight: 500;
-
   &:hover,
   &:focus {
     background-color: ${props => props.theme.colors.buttonHover};

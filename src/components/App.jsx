@@ -23,7 +23,7 @@ export default function App() {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  const addContact = (name, number) => {
+  const addContact = ({ name, number }) => {
     const newContact = {
       id: nanoid(),
       name,
