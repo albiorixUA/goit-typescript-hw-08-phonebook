@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
-export const ItemList = styled.label`
+export const ItemList = styled.li`
   display: flex;
   align-items: center;
+  text-align: left;
   &::before {
     content: '';
     width: 8px;
@@ -13,18 +14,11 @@ export const ItemList = styled.label`
     margin-left: 30px;
   }
 `;
-
-export const ButtonDelete = styled.button`
-  cursor: pointer;
-  margin-left: 15px;
-  border-radius: 4px;
-  padding: 5px 10px;
-  background-color: ${props => props.theme.colors.button};
-  color: ${props => props.theme.colors.white};
-  font-weight: 500;
-
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.colors.buttonHover};
-  }
+export const ListOfContacts = styled.ul`
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+`;
+export const ContactDetails = styled.p`
+  flex-grow: 1;
 `;

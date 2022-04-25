@@ -4,11 +4,14 @@ import {
   MainForm,
   Label,
   InputForm,
-  ButtonAdd,
   ErrorText,
+  ButtonAddContact,
 } from './ContactForm.styled';
+import { AiFillFileAdd } from 'react-icons/ai';
+import { iconSize } from 'constants';
+import { Spiner } from 'utils/Spiner';
 
-export default function ContactForm({ onSubmit }) {
+export default function ContactForm({ onSubmit, isAddItems }) {
   const initialValues = {
     name: '',
     number: '',
@@ -46,7 +49,9 @@ export default function ContactForm({ onSubmit }) {
         <Label htmlFor="number">Number</Label>
         <InputForm name="number" type="tel" placeholder="Enter phone number" />
         <FormError name="name" />
-        <ButtonAdd type="submit">Add contact</ButtonAdd>
+        <ButtonAddContact type="submit" disabled={isAddItems}>
+          {isAddItems ? <Spiner /> : <AiFillFileAdd size={iconSize.md} />}
+        </ButtonAddContact>
       </MainForm>
     </Formik>
   );
