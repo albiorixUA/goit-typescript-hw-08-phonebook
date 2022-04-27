@@ -1,10 +1,10 @@
-import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
+import styled from '@emotion/styled';
 
 export const MainForm = styled(Form)`
   position: relative;
-  width: 200px;
-  padding: 20px 100px 20px 20px;
+  max-width: 370px;
+  padding: 20px 50px 20px 20px;
   border: ${props => `1px solid ${props.theme.colors.black}`};
   border-radius: 4px;
 `;
@@ -16,12 +16,7 @@ export const ErrorText = styled.p`
   color: red;
 `;
 
-export const InputForm = styled(Field)`
-  margin-top: 5px;
+export const InputName = styled(Field)`
   margin-bottom: 10px;
 `;
-export const ButtonAddContact = styled.button`
-  position: absolute;
-  top: 45%;
-  right: 15%;
-`;
+export const InputNumber = styled(Field)``;

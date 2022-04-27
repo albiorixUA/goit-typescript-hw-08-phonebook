@@ -1,4 +1,3 @@
-
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const contactsAPI = createApi({
@@ -20,14 +19,22 @@ export const contactsAPI = createApi({
       invalidatesTags: ['Contact'],
     }),
     creacteContact: builder.mutation({
-      query: ({ name, number }) => ({
+      query: body => ({
         url: 'contacts',
         method: 'POST',
-        body: {
-          name: name,
-          number: number,
-        },
+        body,
       }),
+      invalidatesTags: ['Contact'],
+    }),
+    updateContact: builder.mutation({
+      query(data) {
+        const { contactId, ...body } = data;
+        return {
+          url: `contacts/${contactId}`,
+          method: 'PUT',
+          body,
+        };
+      },
       invalidatesTags: ['Contact'],
     }),
   }),
@@ -37,4 +44,5 @@ export const {
   useFetchContactsQuery,
   useDeleteContactsMutation,
   useCreacteContactMutation,
+  useUpdateContactMutation,
 } = contactsAPI;

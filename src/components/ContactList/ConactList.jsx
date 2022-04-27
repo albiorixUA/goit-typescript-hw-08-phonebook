@@ -6,9 +6,10 @@ import { AiFillEdit } from 'react-icons/ai';
 import { iconSize } from 'constants';
 import { Spiner } from 'utils/Spiner';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, onEdit, getContactId }) => {
   const [deleteContacts, { isLoading: isDeleting }] =
     useDeleteContactsMutation();
+
   return (
     <>
       {contacts.length > 0 ? (
@@ -25,7 +26,13 @@ const ContactList = ({ contacts }) => {
               >
                 {isDeleting ? <Spiner /> : <IoIosTrash size={iconSize.md} />}
               </button>
-              <button type="button">
+              <button
+                type="button"
+                onClick={() => {
+                  onEdit();
+                  getContactId(id);
+                }}
+              >
                 <AiFillEdit size={iconSize.md} />
               </button>
             </ItemList>
