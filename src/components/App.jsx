@@ -19,7 +19,7 @@ export default function App() {
   const { isShowing, toggle } = UseModal();
   const { data } = useFetchContactsQuery();
   const [creacteContact, { isLoading }] = useCreacteContactMutation();
-  const [updateContacts, result] = useUpdateContactMutation();
+  const [updateContacts] = useUpdateContactMutation();
 
   const addNewContact = ({ name, number }) => {
     const newContact = {
@@ -55,14 +55,7 @@ export default function App() {
 
   return (
     <div>
-      {isShowing && (
-        <EditContactModal
-          isShowing={isShowing}
-          hide={toggle}
-          onSubmit={updateContact}
-          isLoading={result.isLoading}
-        />
-      )}
+      {isShowing && <EditContactModal hide={toggle} onSubmit={updateContact} />}
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addNewContact} isAddItems={isLoading} />
       <Toaster />

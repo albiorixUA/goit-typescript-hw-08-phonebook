@@ -8,7 +8,7 @@ import {
   ErrorText,
 } from './Form.styled';
 
-export default function Form({ onSubmit, children }) {
+export default function Form({ onSubmit, children, toggleModal }) {
   const initialValues = {
     name: '',
     number: '',
@@ -21,8 +21,8 @@ export default function Form({ onSubmit, children }) {
 
   const handleSubmit = (values, { resetForm }) => {
     onSubmit(values);
-
     resetForm();
+    toggleModal();
   };
 
   const FormError = ({ name }) => {

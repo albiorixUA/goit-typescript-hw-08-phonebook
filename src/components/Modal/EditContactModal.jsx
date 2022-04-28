@@ -2,26 +2,15 @@ import { Modal } from 'react-bootstrap';
 import { ButtonModal } from './EditContactModal.styled';
 import Form from 'components/Form';
 
-export default function EditContactModal({
-  isShowing,
-  hide,
-  onSubmit,
-  isLoading,
-}) {
+export default function EditContactModal({ hide, onSubmit }) {
   return (
     <>
-      <Modal
-        show={isShowing && !isLoading}
-        onHide={hide}
-        size="sm"
-        backdrop="static"
-        keyboard={false}
-      >
+      <Modal show onHide={hide} size="sm" backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Edit contact</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={onSubmit}>
+          <Form onSubmit={onSubmit} toggleModal={hide}>
             <ButtonModal variant="secondary" onClick={hide}>
               Close
             </ButtonModal>
