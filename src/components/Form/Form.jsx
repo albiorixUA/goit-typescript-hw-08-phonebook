@@ -8,8 +8,13 @@ import {
   ErrorText,
 } from './Form.styled';
 
-export default function Form({ onSubmit, children, toggleModal }) {
-  const initialValues = {
+export default function Form({
+  onSubmit,
+  children,
+  toggleModal,
+  initialValues,
+}) {
+  const defaultInitialValues = {
     name: '',
     number: '',
   };
@@ -36,7 +41,7 @@ export default function Form({ onSubmit, children, toggleModal }) {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={defaultInitialValues && initialValues}
       onSubmit={handleSubmit}
       validationSchema={schema}
     >

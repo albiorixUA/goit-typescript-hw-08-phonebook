@@ -55,7 +55,13 @@ export default function App() {
 
   return (
     <div>
-      {isShowing && <EditContactModal hide={toggle} onSubmit={updateContact} />}
+      {isShowing && (
+        <EditContactModal
+          hide={toggle}
+          onSubmit={updateContact}
+          contactId={contactId}
+        />
+      )}
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addNewContact} isAddItems={isLoading} />
       <Toaster />
