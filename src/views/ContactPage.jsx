@@ -6,7 +6,7 @@ import {
   useFetchContactsQuery,
   useCreacteContactMutation,
   useUpdateContactMutation,
-} from '../redux/contactsSlice';
+} from '../redux/contactsAPI';
 
 import { useState } from 'react';
 import { GlobalLoader } from 'utils/Skeleton';
@@ -55,13 +55,7 @@ export default function App() {
 
   return (
     <div>
-      {isShowing && (
-        <EditContactModal
-          hide={toggle}
-          onSubmit={updateContact}
-          contactId={contactId}
-        />
-      )}
+      {isShowing && <EditContactModal hide={toggle} onSubmit={updateContact} />}
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addNewContact} isAddItems={isLoading} />
       <Toaster />

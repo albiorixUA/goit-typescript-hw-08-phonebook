@@ -2,6 +2,7 @@ import { ButtonAddContact } from './ButtonInForm.styled';
 import { AiFillFileAdd } from 'react-icons/ai';
 import { iconSize } from 'constants';
 import { Spiner } from 'utils/Spiner';
+import PropTypes from 'prop-types';
 
 export default function ButtonInForm({ isAddItems }) {
   return (
@@ -10,3 +11,7 @@ export default function ButtonInForm({ isAddItems }) {
     </ButtonAddContact>
   );
 }
+
+ButtonInForm.propTypes = {
+  isAddItems: PropTypes.bool.isRequired,
+};

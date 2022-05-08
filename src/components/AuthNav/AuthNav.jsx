@@ -14,10 +14,11 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-export default function Navigation() {
+export default function AuthNav() {
   return (
     <nav>
-      <StyledLink to="/contacts"> Contacts</StyledLink>
+      <StyledLink to="/register">Register</StyledLink>
+      <StyledLink to="/login"> Login</StyledLink>
     </nav>
   );
 }

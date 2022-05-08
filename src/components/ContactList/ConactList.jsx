@@ -1,6 +1,11 @@
-import { ItemList, ListOfContacts, ContactDetails } from './ContactList.styled';
+import {
+  ItemList,
+  ListOfContacts,
+  ContactDetails,
+  EditButton,
+} from './ContactList.styled';
 import PropTypes from 'prop-types';
-import { useDeleteContactsMutation } from 'redux/contactsSlice';
+import { useDeleteContactsMutation } from 'redux/contactsAPI';
 import { IoIosTrash } from 'react-icons/io';
 import { AiFillEdit } from 'react-icons/ai';
 import { iconSize } from 'constants';
@@ -26,7 +31,7 @@ const ContactList = ({ contacts, onEdit, getContactId }) => {
               >
                 {isDeleting ? <Spiner /> : <IoIosTrash size={iconSize.md} />}
               </button>
-              <button
+              <EditButton
                 type="button"
                 onClick={() => {
                   onEdit();
@@ -34,7 +39,7 @@ const ContactList = ({ contacts, onEdit, getContactId }) => {
                 }}
               >
                 <AiFillEdit size={iconSize.md} />
-              </button>
+              </EditButton>
             </ItemList>
           ))}
         </ListOfContacts>
@@ -46,13 +51,8 @@ const ContactList = ({ contacts, onEdit, getContactId }) => {
 };
 
 ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-    })
-  ),
+  contacts: PropTypes.array.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  getContactId: PropTypes.func.isRequired,
 };
 export default ContactList;

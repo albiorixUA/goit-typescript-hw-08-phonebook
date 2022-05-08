@@ -23,3 +23,7 @@ export const ListOfContacts = styled.ul`
 export const ContactDetails = styled.p`
   flex-grow: 1;
 `;
+
+export const EditButton = styled.button`
+  /* margin-left: 10px; */
+`;
