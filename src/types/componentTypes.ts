@@ -40,3 +40,12 @@ export interface RoutesPropsType {
   children: React.ReactNode;
   restricted?: boolean;
 }
+
+export type ThemeProp = {
+  colors: {
+    button: string;
+    buttonHover: string;
+    black: string;
+    white: string;
+  };
+};
