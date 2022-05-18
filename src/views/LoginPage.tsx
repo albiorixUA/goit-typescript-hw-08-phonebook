@@ -1,11 +1,11 @@
-import { Formik, ErrorMessage, Field } from 'formik';
+import { Formik, ErrorMessage, Field, FormikHelpers } from 'formik';
 import {
   RegisterForm,
   Label,
   RegisterButton,
 } from './StyleViews/ViewsPages.styled';
 import * as yup from 'yup';
-import { useLoginMutation } from 'redux/authAPI';
+import { useLoginMutation, Request } from 'redux/authAPI';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { getUsername } from 'redux/authSlice';
@@ -25,12 +25,12 @@ export default function LoginPage() {
     password: yup.string().min(8).required(),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (values: Request, helpers: FormikHelpers<Request>) => {
     login(values);
-    resetForm();
+    helpers.resetForm();
   };
 
-  const FormError = ({ name }) => {
+  const FormError = ({ name }: any) => {
     return <ErrorMessage name={name} render={message => <p>{message}</p>} />;
   };
 

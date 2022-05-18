@@ -11,6 +11,8 @@ export interface FormProps {
 export interface Values {
   name: string;
   number: string;
+  username?: string;
+  password?: string;
 }
 
 export interface ContactFormProps {

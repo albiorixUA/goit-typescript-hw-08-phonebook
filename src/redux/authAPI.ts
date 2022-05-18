@@ -12,8 +12,9 @@ export interface UserResponse {
 }
 
 export interface Request {
-  username: string;
+  name?: string;
   password: string;
+  email: string;
 }
 
 export const authAPI = createApi({

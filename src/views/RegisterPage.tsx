@@ -1,11 +1,11 @@
-import { Formik, ErrorMessage, Field } from 'formik';
+import { Formik, ErrorMessage, Field, FormikHelpers } from 'formik';
 import {
   RegisterForm,
   Label,
   RegisterButton,
 } from './StyleViews/ViewsPages.styled';
 import * as yup from 'yup';
-import { useRegisterMutation } from 'redux/authAPI';
+import { useRegisterMutation, Request } from 'redux/authAPI';
 import toast, { Toaster } from 'react-hot-toast';
 import React from 'react';
 
@@ -13,7 +13,7 @@ export default function RegisterPage() {
   const [register, { isSuccess, isError }] = useRegisterMutation();
 
   const defaultInitialValues = {
-    name: '',
+    username: '',
     email: '',
     password: '',
   };
@@ -24,12 +24,12 @@ export default function RegisterPage() {
     password: yup.string().min(8).required(),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (values: Request, helpers: FormikHelpers<Request>) => {
     register(values);
-    resetForm();
+    helpers.resetForm();
   };
 
-  const FormError = ({ name }) => {
+  const FormError = ({ name }: any) => {
     return <ErrorMessage name={name} render={message => <p>{message}</p>} />;
   };
 
