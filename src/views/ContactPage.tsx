@@ -12,22 +12,27 @@ import { useState } from 'react';
 import { GlobalLoader } from 'utils/Skeleton';
 import UseModal from 'utils/UseModal';
 import EditContactModal from 'components/Modal/EditContactModal';
+import React from 'react';
+import { Values } from 'types/componentTypes';
 
 export default function App() {
   const [filteredItems, setFilteredItems] = useState('');
   const [contactId, setConatctId] = useState('');
   const { isShowing, toggle } = UseModal();
-  const { data } = useFetchContactsQuery();
+  const { data } = useFetchContactsQuery(null);
   const [creacteContact, { isLoading }] = useCreacteContactMutation();
   const [updateContacts] = useUpdateContactMutation();
 
-  const addNewContact = ({ name, number }) => {
+  const addNewContact = ({ name, number }: Values) => {
     const newContact = {
       name,
       number,
     };
     if (
-      data.some(contact => contact.name.toLowerCase() === name.toLowerCase())
+      data.some(
+        (contact: { name: string }) =>
+          contact.name.toLowerCase() === name.toLowerCase()
+      )
     ) {
       return toast.error(`${name} is already in contacts!`);
     }
@@ -35,20 +40,22 @@ export default function App() {
     return creacteContact(newContact);
   };
 
-  const changeFilter = e => {
+  const changeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilteredItems(e.target.value);
   };
 
   const getVisibleContacts = () => {
     const normalizedFilter = filteredItems.toLowerCase();
-    return data.filter(el => el.name.toLowerCase().includes(normalizedFilter));
+    return data.filter((el: { name: string }) =>
+      el.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
-  const getContactId = id => {
+  const getContactId = (id: React.SetStateAction<string>) => {
     setConatctId(id);
   };
 
-  const updateContact = contact => {
+  const updateContact = (contact: Values) => {
     const newUpdateContact = { contactId, ...contact };
     updateContacts(newUpdateContact);
   };
@@ -60,7 +67,7 @@ export default function App() {
       <ContactForm onSubmit={addNewContact} isAddItems={isLoading} />
       <Toaster />
       <h2>Contacts</h2>
-      <Filter value={filteredItems} onChange={changeFilter} />
+      <Filter value={filteredItems} onChange={() => changeFilter} />
       {data ? (
         <ContactList
           contacts={getVisibleContacts()}

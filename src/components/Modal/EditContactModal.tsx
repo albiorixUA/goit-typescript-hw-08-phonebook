@@ -1,9 +1,13 @@
 import { Modal } from 'react-bootstrap';
 import { ButtonModal } from './EditContactModal.styled';
 import Form from 'components/Form';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { EditContactModalProps } from 'types/componentTypes';
 
-export default function EditContactModal({ hide, onSubmit }) {
+const EditContactModal: React.FC<EditContactModalProps> = ({
+  hide,
+  onSubmit,
+}) => {
   return (
     <>
       <Modal show onHide={hide} size="sm" backdrop="static" keyboard={false}>
@@ -23,9 +27,5 @@ export default function EditContactModal({ hide, onSubmit }) {
       </Modal>
     </>
   );
-}
-
-EditContactModal.propTypes = {
-  hide: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
 };
+export default EditContactModal;

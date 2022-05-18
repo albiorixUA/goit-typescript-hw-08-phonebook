@@ -1,15 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authAPI } from './authAPI';
+import { authAPI, User } from './authAPI';
+import { RootState } from './store';
 
-const initialState = {
-  user: { name: null, email: null },
-  token: null,
-  isLoggedIn: false,
+export type AuthState = {
+  user: User;
+  token: string | null;
+  isLoggedIn: boolean;
 };
 
 export const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: {
+    user: { name: null, email: null },
+    token: null,
+    isLoggedIn: false,
+  } as AuthState,
+
   extraReducers: builder => {
     builder.addMatcher(
       authAPI.endpoints.register.matchFulfilled,
@@ -27,7 +33,7 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
       }
     );
-    builder.addMatcher(authAPI.endpoints.logout.matchFulfilled, (state, _) => {
+    builder.addMatcher(authAPI.endpoints.logout.matchFulfilled, state => {
       state.token = null;
       state.user.name = null;
       state.user.email = null;
@@ -41,10 +47,11 @@ export const authSlice = createSlice({
       }
     );
   },
+  reducers: {},
 });
 
-export const getIsLoggedIn = state => state.auth.isLoggedIn;
-export const getUsername = state => state.auth.user.name;
-export const getToken = state => state.auth.token;
+export const getIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
+export const getUsername = (state: RootState) => state.auth.user.name;
+export const getToken = (state: RootState) => state.auth.token;
 
 export default authSlice.reducer;

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import UserMenu from 'components/UserMenu';
 import { getIsLoggedIn } from 'redux/authSlice';
 import { Container } from './AppBar.styled';
+import React from 'react';
 
 export default function Appbar() {
   const isLoggedIn = useSelector(getIsLoggedIn);

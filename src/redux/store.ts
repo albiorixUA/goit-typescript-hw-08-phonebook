@@ -21,11 +21,13 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const persistedReducer = persistReducer(authPersistConfig, authReducer);
+
 export const store = configureStore({
   reducer: {
     [contactsAPI.reducerPath]: contactsAPI.reducer,
     [authAPI.reducerPath]: authAPI.reducer,
-    auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistedReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -41,3 +43,4 @@ export const store = configureStore({
 setupListeners(store.dispatch);
 
 export const persistor = persistStore(store);
+export type RootState = ReturnType<typeof store.getState>;

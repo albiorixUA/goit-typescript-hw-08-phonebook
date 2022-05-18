@@ -4,14 +4,19 @@ import {
   ContactDetails,
   EditButton,
 } from './ContactList.styled';
-import PropTypes from 'prop-types';
 import { useDeleteContactsMutation } from 'redux/contactsAPI';
 import { IoIosTrash } from 'react-icons/io';
 import { AiFillEdit } from 'react-icons/ai';
-import { iconSize } from 'constants';
+import { iconSize } from 'constants/iconSize';
 import { Spiner } from 'utils/Spiner';
+import React from 'react';
+import { ContactListProps } from 'types/componentTypes';
 
-const ContactList = ({ contacts, onEdit, getContactId }) => {
+const ContactList: React.FC<ContactListProps> = ({
+  contacts,
+  onEdit,
+  getContactId,
+}) => {
   const [deleteContacts, { isLoading: isDeleting }] =
     useDeleteContactsMutation();
 
@@ -50,9 +55,4 @@ const ContactList = ({ contacts, onEdit, getContactId }) => {
   );
 };
 
-ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  getContactId: PropTypes.func.isRequired,
-};
 export default ContactList;

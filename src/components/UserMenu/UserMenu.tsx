@@ -3,6 +3,7 @@ import { getUsername } from 'redux/authSlice';
 import { useLogoutMutation } from 'redux/authAPI';
 import { Container, UserName } from './UserMenu.styled';
 import Avatar, { genConfig } from 'react-nice-avatar';
+import React from 'react';
 
 export default function UserMenu() {
   const name = useSelector(getUsername);

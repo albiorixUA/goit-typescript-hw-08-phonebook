@@ -7,6 +7,7 @@ import {
 import * as yup from 'yup';
 import { useRegisterMutation } from 'redux/authAPI';
 import toast, { Toaster } from 'react-hot-toast';
+import React from 'react';
 
 export default function RegisterPage() {
   const [register, { isSuccess, isError }] = useRegisterMutation();

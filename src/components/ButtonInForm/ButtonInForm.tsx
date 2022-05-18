@@ -1,17 +1,17 @@
 import { ButtonAddContact } from './ButtonInForm.styled';
 import { AiFillFileAdd } from 'react-icons/ai';
-import { iconSize } from 'constants';
+import { iconSize } from 'constants/iconSize';
 import { Spiner } from 'utils/Spiner';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-export default function ButtonInForm({ isAddItems }) {
+interface ButtonInFormProps {
+  isAddItems: boolean;
+}
+
+export default function ButtonInForm({ isAddItems }: ButtonInFormProps) {
   return (
     <ButtonAddContact type="submit" disabled={isAddItems}>
       {isAddItems ? <Spiner /> : <AiFillFileAdd size={iconSize.md} />}
     </ButtonAddContact>
   );
 }
-
-ButtonInForm.propTypes = {
-  isAddItems: PropTypes.bool.isRequired,
-};

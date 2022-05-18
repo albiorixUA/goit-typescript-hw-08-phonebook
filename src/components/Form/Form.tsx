@@ -1,4 +1,7 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage, FormikHelpers } from 'formik';
+import React from 'react';
+import { FormProps, Values } from 'types/componentTypes';
+
 import * as yup from 'yup';
 import {
   MainForm,
@@ -8,12 +11,12 @@ import {
   ErrorText,
 } from './Form.styled';
 
-export default function Form({
+const Form: React.FC<FormProps> = ({
   onSubmit,
   children,
   toggleModal,
   initialValues,
-}) {
+}) => {
   const defaultInitialValues = {
     name: '',
     number: '',
@@ -24,13 +27,13 @@ export default function Form({
     number: yup.number().min(8).positive().required(),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (values: Values, helpers: FormikHelpers<Values>) => {
     onSubmit(values);
-    resetForm();
-    toggleModal();
+    helpers.resetForm();
+    toggleModal?.();
   };
 
-  const FormError = ({ name }) => {
+  const FormError = ({ name }: any) => {
     return (
       <ErrorMessage
         name={name}
@@ -60,4 +63,6 @@ export default function Form({
       </MainForm>
     </Formik>
   );
-}
+};
+
+export default Form;
