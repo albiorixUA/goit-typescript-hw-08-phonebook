@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { ThemeProp } from 'types/componentTypes';
 
-export const ItemList = styled.li<ThemeProp>`
+export const ItemList = styled.li`
   display: flex;
   align-items: baseline;
   &::before {
@@ -9,7 +8,7 @@ export const ItemList = styled.li<ThemeProp>`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: ${props => props.theme.black};
+    background-color: ${props => props.theme.colors.black};
     margin-right: 15px;
     margin-left: 15px;
   }
