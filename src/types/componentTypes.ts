@@ -42,7 +42,7 @@ export interface RoutesPropsType {
 }
 
 export type ThemeProp = {
-  colors: {
+  colors?: {
     button: string;
     buttonHover: string;
     black: string;
