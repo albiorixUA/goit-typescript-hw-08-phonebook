@@ -10,6 +10,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { getUsername } from 'redux/authSlice';
 import React from 'react';
+import { FormErrorProps } from 'types/componentTypes';
 
 export default function LoginPage() {
   const [login, { isSuccess, isError }] = useLoginMutation();
@@ -30,7 +31,7 @@ export default function LoginPage() {
     helpers.resetForm();
   };
 
-  const FormError = ({ name }: any) => {
+  const FormError = ({ name }: FormErrorProps) => {
     return <ErrorMessage name={name} render={message => <p>{message}</p>} />;
   };
 

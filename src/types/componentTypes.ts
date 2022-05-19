@@ -53,3 +53,7 @@ declare module '@emotion/react' {
     };
   }
 }
+
+export interface FormErrorProps {
+  name: string;
+}

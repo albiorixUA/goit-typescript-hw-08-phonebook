@@ -1,6 +1,6 @@
 import { Formik, ErrorMessage, FormikHelpers } from 'formik';
 import React from 'react';
-import { FormProps, Values } from 'types/componentTypes';
+import { FormErrorProps, FormProps, Values } from 'types/componentTypes';
 
 import * as yup from 'yup';
 import {
@@ -33,7 +33,7 @@ const Form: React.FC<FormProps> = ({
     toggleModal?.();
   };
 
-  const FormError = ({ name }: any) => {
+  const FormError = ({ name }: FormErrorProps) => {
     return (
       <ErrorMessage
         name={name}

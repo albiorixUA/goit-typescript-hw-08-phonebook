@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import { useRegisterMutation, Request } from 'redux/authAPI';
 import toast, { Toaster } from 'react-hot-toast';
 import React from 'react';
+import { FormErrorProps } from 'types/componentTypes';
 
 export default function RegisterPage() {
   const [register, { isSuccess, isError }] = useRegisterMutation();
@@ -29,7 +30,7 @@ export default function RegisterPage() {
     helpers.resetForm();
   };
 
-  const FormError = ({ name }: any) => {
+  const FormError = ({ name }: FormErrorProps) => {
     return <ErrorMessage name={name} render={message => <p>{message}</p>} />;
   };
 
