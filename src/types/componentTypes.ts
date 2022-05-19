@@ -37,11 +37,13 @@ export interface EditContactModalProps {
 }
 
 export interface RoutesPropsType {
-  children: React.ReactNode;
+  children: ReactElement;
   restricted?: boolean;
+  redirectTo?: string;
 }
 
 import '@emotion/react';
+import { ReactElement } from 'react';
 
 declare module '@emotion/react' {
   export interface Theme {
